@@ -72,7 +72,8 @@ vicon/subject_2/segment_2
 ## Constributors
 **ros2-vicon-receiver** is developed by
 [Andrea Camisa](https://www.unibo.it/sitoweb/a.camisa),
-[Andrea Testa](https://www.unibo.it/sitoweb/a.testa)
+[Andrea Testa](https://www.unibo.it/sitoweb/a.testa) and
+[Giuseppe Notarstefano](https://www.unibo.it/sitoweb/giuseppe.notarstefano)
 
 ## Acknowledgements
 This result is part of a project that has received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (grant agreement No 638992 - OPT4SMART).
