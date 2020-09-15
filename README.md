@@ -1,4 +1,4 @@
-# Vicon receiver for ROS2 ![GitHub](https://img.shields.io/github/license/andreacamisa/ros2-vicon-receiver) https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver
+# Vicon receiver for ROS2 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver)
 
 **ros2-vicon-receiver** is a ROS2 package, written in C++, that retrieves data from Vicon software and publishes it on ROS2 topics. The code is partly derived from a mixture of [Vicon-ROS2](https://github.com/aheuillet/Vicon-ROS2) and [Vicon bridge](https://github.com/ethz-asl/vicon_bridge).
 
@@ -17,7 +17,7 @@ Otherwise, proceed as follows. Make sure you have ROS2 installed (follow the ins
 
 Then, install [Colcon](https://colcon.readthedocs.io/en/released/index.html) and [CMake](https://cmake.org/) :
 ```
-sudo apt install -y python3-colcon-common-extensions cmake
+$ sudo apt install -y python3-colcon-common-extensions cmake
 ```
 
 ### Installation of Datastream SDK and other libraries
