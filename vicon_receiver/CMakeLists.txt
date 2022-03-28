@@ -24,7 +24,6 @@ include_directories(
 find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rcutils)
 find_package(Boost REQUIRED COMPONENTS thread)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -35,7 +34,7 @@ ament_export_dependencies(rosidl_default_runtime)
 
 add_executable(vicon_client src/vicon_receiver/communicator.cpp src/vicon_receiver/publisher.cpp)
 target_link_libraries(vicon_client ViconDataStreamSDK_CPP ${Boost_LIBRARIES})
-ament_target_dependencies(vicon_client "rclcpp" "rclutils")
+ament_target_dependencies(vicon_client "rclcpp")
 
 get_default_rmw_implementation(rmw_implementation)
 find_package("${rmw_implementation}" REQUIRED)
