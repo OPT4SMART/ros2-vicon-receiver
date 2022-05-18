@@ -98,7 +98,9 @@ void Communicator::get_frame()
                 vicon_client.GetSegmentGlobalTranslation(subject_name, segment_name);
             Output_GetSegmentGlobalRotationQuaternion rot =
                 vicon_client.GetSegmentGlobalRotationQuaternion(subject_name, segment_name);
-            
+            if (trans.Occluded || rot.Occluded) {
+                continue;
+            }
             for (size_t i = 0; i < 4; i++)
             {
                 if (i < 3)
