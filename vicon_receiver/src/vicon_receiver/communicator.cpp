@@ -103,10 +103,13 @@ void Communicator::get_frame()
                 vicon_client.GetSegmentGlobalTranslation(subject_name, segment_name);
             Output_GetSegmentGlobalRotationQuaternion rot =
                 vicon_client.GetSegmentGlobalRotationQuaternion(subject_name, segment_name);
-            if (trans.Occluded || rot.Occluded) {
+            
+	    // check for occulusions
+	    if (trans.Occluded || rot.Occluded) {
                 continue;
             }
-            for (size_t i = 0; i < 4; i++)
+            
+	    for (size_t i = 0; i < 4; i++)
             {
                 if (i < 3)
                     current_position.translation[i] = trans.Translation[i];
@@ -151,7 +154,6 @@ void Communicator::get_frame()
 void Communicator::publish_tf(PositionStruct p)
 {
 
-
 	geometry_msgs::msg::TransformStamped t;
 	t.header.stamp = this->get_clock()->now();
     	t.header.frame_id = ns_name + "/world";
@@ -168,7 +170,6 @@ void Communicator::publish_tf(PositionStruct p)
         t.transform.rotation.w = p.rotation[3];
 
         // Send the transformation
-	std::cout << "Publishing tf" << std::endl;
         tf_broadcaster_->sendTransform(t);
 
 }
