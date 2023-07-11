@@ -41,8 +41,12 @@ find_package("${rmw_implementation}" REQUIRED)
 get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
 
 foreach(typesupport_impl ${typesupport_impls})
-  rosidl_target_interfaces(vicon_client
-    ${PROJECT_NAME} ${typesupport_impl}
+  rosidl_get_typesupport_target(cpp_typesupport_target 
+     "${PROJECT_NAME}"
+     "${typesupport_impl}"
+  )
+  target_link_libraries(vicon_client
+     "${cpp_typesupport_target}"
   )
 endforeach()
 
