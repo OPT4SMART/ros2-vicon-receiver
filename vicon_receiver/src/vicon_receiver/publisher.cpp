@@ -1,6 +1,9 @@
 #include "vicon_receiver/publisher.hpp"
+#include "std_msgs/msg/header.hpp"
 
+// Constructor
 Publisher::Publisher(std::string topic_name, rclcpp::Node* node)
+    : node_(node) //I had no idea this syntax was a thing.
 {
     position_publisher_ = node->create_publisher<vicon_receiver::msg::Position>(topic_name, 10);
     is_ready = true;
@@ -9,6 +12,7 @@ Publisher::Publisher(std::string topic_name, rclcpp::Node* node)
 void Publisher::publish(PositionStruct p)
 {
     auto msg = std::make_shared<vicon_receiver::msg::Position>();
+    msg->header.stamp = node_->now();
     msg->x_trans = p.translation[0];
     msg->y_trans = p.translation[1];
     msg->z_trans = p.translation[2];

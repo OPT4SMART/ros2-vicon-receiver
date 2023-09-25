@@ -22,6 +22,8 @@ class Publisher
 {
 private:
     rclcpp::Publisher<vicon_receiver::msg::Position>::SharedPtr position_publisher_;
+// Create pointer to the node itself.
+    rclcpp::Node* node_;
 
 public:
     bool is_ready = false;
