@@ -1,19 +1,26 @@
 # Vicon receiver for ROS 2 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver)
 
+Fork of https://github.com/OPT4SMART/ros2-vicon-receiver, fixed the following, which occurred when running this package on ROS2 Humble with Ubuntu 22.04 
+ 
+```
+CMake Error at /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_target_interfaces.cmake:55 (if):
+  if given arguments:
+
+    "\$<BUILD_INTERFACE:/home/uahcrablab/vicon_ws/build/vicon_receiver/rosidl_typesupport_fastrtps_cpp>" "\$<INSTALL_INTERFACE:include/vicon_receiver>"
+
+  Unknown arguments specified
+Call Stack (most recent call first):
+  CMakeLists.txt:44 (rosidl_target_interfaces)
+```
+
 **ros2-vicon-receiver** is a ROS 2 package, written in C++, that retrieves data from Vicon software and publishes it on ROS 2 topics. The code is partly derived from a mixture of [Vicon-ROS2](https://github.com/aheuillet/Vicon-ROS2) and [Vicon bridge](https://github.com/ethz-asl/vicon_bridge).
 
-This is NOT an official ROS 2 package and is not supported. The package has been successfully tested with ROS 2 Dashing Diademata, ROS 2 Foxy, ROS 2 Galactic and ROS 2 Humble on the operating systems Ubuntu 18.04 Bionic Beaver, Ubuntu 20.04 Focal Fossa and MacOS 10.13 High Sierra.
+This is NOT an official ROS 2 package and is not supported. The package has been successfully tested with ROS 2 Humble on Ubuntu 22.04. 
 
 ## Requirements
 
 ### Installation of dependencies
-
-If you are using Ubuntu 18.04 Bionic Beaver, you can install all the dependencies by simply `cd`'ing into the main project folder and then running
-```
-$ ./install_ubuntu_bionic.sh
-```
-
-Otherwise, proceed as follows. Make sure you have ROS 2 installed (follow the instructions at the [ROS 2 website](https://index.ros.org/doc/ros2/Installation/)).
+Make sure you have ROS 2 installed (follow the instructions at the [ROS 2 website](https://index.ros.org/doc/ros2/Installation/)).
 
 Then, install [Colcon](https://colcon.readthedocs.io/en/released/index.html) and [CMake](https://cmake.org/) :
 ```
