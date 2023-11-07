@@ -1,6 +1,6 @@
 # Vicon receiver for ROS 2 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver)
 
-Fork of https://github.com/OPT4SMART/ros2-vicon-receiver, fixed the following, which occurred when running this package on ROS2 Humble with Ubuntu 22.04 
+Fork of https://github.com/OPT4SMART/ros2-vicon-receiver, fixed the following, which occurred when running this package on ROS2 Humble with Ubuntu 22.04. Updated DataStreamSDK to 1.12.0 (Latest Version as of 11-07-2023), and refactored position.msg to vicon_msgs package. 
  
 ```
 CMake Error at /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_target_interfaces.cmake:55 (if):
