@@ -7,11 +7,8 @@
   <maintainer email="info@opt4smart.eu">OPT4SMART group</maintainer>
   <license>GNU General Public License v3</license>
   
-  <member_of_group>rosidl_interface_packages</member_of_group>
 
-  <buildtool_depend>rosidl_default_generators</buildtool_depend>
-
-  <exec_depend>rosidl_default_runtime</exec_depend>
+  <depend>vicon_msgs</depend>
 
   <build_depend>rclcpp</build_depend>
 
