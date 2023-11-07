@@ -2,7 +2,7 @@
 #define PUBLISHER_HPP
 #include <unistd.h>
 #include "rclcpp/rclcpp.hpp"
-#include "vicon_receiver/msg/position.hpp"
+#include "vicon_msgs/msg/position.hpp"
 
 // Struct used to hold segment data to transmit to the Publisher class.
 struct PositionStruct
@@ -21,7 +21,7 @@ struct PositionStruct
 class Publisher
 {
 private:
-    rclcpp::Publisher<vicon_receiver::msg::Position>::SharedPtr position_publisher_;
+    rclcpp::Publisher<vicon_msgs::msg::Position>::SharedPtr position_publisher_;
 
 public:
     bool is_ready = false;

@@ -2,13 +2,13 @@
 
 Publisher::Publisher(std::string topic_name, rclcpp::Node* node)
 {
-    position_publisher_ = node->create_publisher<vicon_receiver::msg::Position>(topic_name, 10);
+    position_publisher_ = node->create_publisher<vicon_msgs::msg::Position>(topic_name, 10);
     is_ready = true;
 }
 
 void Publisher::publish(PositionStruct p)
 {
-    auto msg = std::make_shared<vicon_receiver::msg::Position>();
+    auto msg = std::make_shared<vicon_msgs::msg::Position>();
     msg->x_trans = p.translation[0];
     msg->y_trans = p.translation[1];
     msg->z_trans = p.translation[2];
