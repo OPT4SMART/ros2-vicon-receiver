@@ -42,7 +42,7 @@ get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
 
 foreach(typesupport_impl ${typesupport_impls})
   rosidl_target_interfaces(vicon_client
-    ${PROJECT_NAME} ${typesupport_impl}
+    ${PROJECT_NAME} "rosidl_typesupport_cpp"
   )
 endforeach()
 
