@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 libs=("libViconDataStreamSDK_CPP.so" "libboost_system-mt-x64.so.1.75.0" "libboost_thread-mt-x64.so.1.75.0" "libboost_timer-mt-x64.so.1.75.0" "libboost_chrono-mt-x64.so.1.75.0")
 
@@ -17,4 +17,4 @@ echo -n "."
 sudo ldconfig
 echo -n "."
 echo
-echo "Installation finished"
+echo "Installation finished!!"
