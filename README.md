@@ -59,9 +59,9 @@ Exit the program with CTRL+C.
 
 ### Information on ROS 2 topics and messages
 
-The **ros2-vicon-receiver** package creates a topic for each segment in each subject with the pattern `namespace/subject_name/segment_name`. Information is published on the topics as soon as new data is available from the vicon client (typically at the vicon client frequency). The message type [Position](vicon_receiver/msg/Position.msg) is used.
+The **ros2-vicon-receiver** package creates a topic for each segment in each subject with the pattern `namespace/subject_name/segment_name`. Information is published on the topics as soon as new data is available from the vicon client (typically at the vicon client frequency). The message type [PoseStamped](https://docs.ros2.org/latest/api/geometry_msgs/msg/PoseStamped.html) is used.
 
-Example: suppose your namespace is the default `vicon` and you have two subjects (`subject_1` and `subject_2`) with two segments each (`segment_1` and `segment_2`). Then **ros2-vicon-receiver** will publish [Position](vicon_receiver/msg/Position.msg) messages on the following topics:
+Example: suppose your namespace is the default `vicon` and you have two subjects (`subject_1` and `subject_2`) with two segments each (`segment_1` and `segment_2`). Then **ros2-vicon-receiver** will publish [PoseStamped](https://docs.ros2.org/latest/api/geometry_msgs/msg/PoseStamped.html) messages on the following topics:
 ```
 vicon/subject_1/segment_1
 vicon/subject_1/segment_2
@@ -72,8 +72,9 @@ vicon/subject_2/segment_2
 ## Constributors
 **ros2-vicon-receiver** is developed by
 [Andrea Camisa](https://www.unibo.it/sitoweb/a.camisa),
-[Andrea Testa](https://www.unibo.it/sitoweb/a.testa) and
-[Giuseppe Notarstefano](https://www.unibo.it/sitoweb/giuseppe.notarstefano)
+[Andrea Testa](https://www.unibo.it/sitoweb/a.testa),
+[Giuseppe Notarstefano](https://www.unibo.it/sitoweb/giuseppe.notarstefano),
+[Michael Mugnai](https://maik93.github.io/)
 
 ## Acknowledgements
 This result is part of a project that has received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (grant agreement No 638992 - OPT4SMART).
