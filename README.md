@@ -33,11 +33,12 @@ $ ./install_libs.sh
 
 ### Building the package
 
-:warning: Do not forget to source the ROS 2 workspace: `source /opt/ros/dashing/setup.bash`
+:warning: Do not forget to source the ROS 2 workspace!
+For example, if you are using Dashing you should run `source /opt/ros/dashing/setup.bash`
 
-Enter the project folder and build the executable
+Enter the project folder (e.g., vicon_ws) and build the executable
 ```
-$ cd vicon_receiver
+$ cd vicon_ws
 $ colcon build --symlink-install
 ```
 
@@ -45,7 +46,7 @@ $ colcon build --symlink-install
 
 Open a new terminal and source the project workspace:
 ```
-$ source vicon_receiver/install/setup.bash
+$ source vicon_ws/install/setup.bash
 ```
 
 To run the program, use the [launch file template](vicon_receiver/launch/client.launch.py) provided in the package. First, open the file and edit the parameters. Running `colcon build` is not needed because of the `--symlink-install` option previously used.
