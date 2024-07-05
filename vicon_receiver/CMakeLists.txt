@@ -40,11 +40,13 @@ get_default_rmw_implementation(rmw_implementation)
 find_package("${rmw_implementation}" REQUIRED)
 get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
 
+set(overall_typesupports "")
 foreach(typesupport_impl ${typesupport_impls})
-  rosidl_target_interfaces(vicon_client
-    ${PROJECT_NAME} ${typesupport_impl}
-  )
+  rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} ${typesupport_impl})
+  set(overall_typesupports "${overall_typesupports};${cpp_typesupport_target}")
 endforeach()
+message(STATUS "Overall typesupports: ${overall_typesupports}")
+target_link_libraries(vicon_client ${overall_typesupports})
 
 install(TARGETS vicon_client DESTINATION lib/${PROJECT_NAME})
 
