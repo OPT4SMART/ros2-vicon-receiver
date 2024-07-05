@@ -1,8 +1,8 @@
-# Vicon receiver for ROS2 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver)
+# Vicon receiver for ROS 2 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/andreacamisa/ros2-vicon-receiver)
 
-**ros2-vicon-receiver** is a ROS2 package, written in C++, that retrieves data from Vicon software and publishes it on ROS2 topics. The code is partly derived from a mixture of [Vicon-ROS2](https://github.com/aheuillet/Vicon-ROS2) and [Vicon bridge](https://github.com/ethz-asl/vicon_bridge).
+**ros2-vicon-receiver** is a ROS 2 package, written in C++, that retrieves data from Vicon software and publishes it on ROS 2 topics. The code is partly derived from a mixture of [Vicon-ROS2](https://github.com/aheuillet/Vicon-ROS2) and [Vicon bridge](https://github.com/ethz-asl/vicon_bridge).
 
-This is NOT an official ROS2 package and is not supported. The package has been successfully tested with ROS2 Dashing Diademata, ROS2 Foxy and ROS2 Galactic on the operating systems Ubuntu 18.04 Bionic Beaver, Ubuntu 20.04 Focal Fossa and MacOS 10.13 High Sierra.
+This is NOT an official ROS 2 package and is not supported. The package has been successfully tested with ROS 2 Dashing Diademata, ROS 2 Foxy, ROS 2 Galactic and ROS 2 Humble on the operating systems Ubuntu 18.04 Bionic Beaver, Ubuntu 20.04 Focal Fossa and MacOS 10.13 High Sierra.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ If you are using Ubuntu 18.04 Bionic Beaver, you can install all the dependencie
 $ ./install_ubuntu_bionic.sh
 ```
 
-Otherwise, proceed as follows. Make sure you have ROS2 installed (follow the instructions at the [ROS2 website](https://index.ros.org/doc/ros2/Installation/)).
+Otherwise, proceed as follows. Make sure you have ROS 2 installed (follow the instructions at the [ROS 2 website](https://index.ros.org/doc/ros2/Installation/)).
 
 Then, install [Colcon](https://colcon.readthedocs.io/en/released/index.html) and [CMake](https://cmake.org/) :
 ```
@@ -24,7 +24,7 @@ $ sudo apt install -y python3-colcon-common-extensions cmake
 
 The Datastream SDK libraries are required to be installed in the system. You can find them on [the official website](https://www.vicon.com/software/datastream-sdk/?section=downloads).
 
-This package is shipped with Datastream SDK 10.1 (the latest version at the time of writing). If you are running Linux x64 and you want to install this version, simply `cd` into the main project folder and issue the command
+This package is shipped with ViconDataStreamSDK_1.12_145507h (the latest version at the time of writing). If you are running Linux x64 and you want to install this version, simply `cd` into the main project folder and issue the command
 ```
 $ ./install_libs.sh
 ```
@@ -33,7 +33,7 @@ $ ./install_libs.sh
 
 ### Building the package
 
-:warning: Do not forget to source the ROS2 workspace: `source /opt/ros/dashing/setup.bash`
+:warning: Do not forget to source the ROS 2 workspace: `source /opt/ros/dashing/setup.bash`
 
 Enter the project folder and build the executable
 ```
@@ -57,7 +57,7 @@ $ ros2 launch vicon_receiver client.launch.py
 
 Exit the program with CTRL+C.
 
-### Information on ROS2 topics and messages
+### Information on ROS 2 topics and messages
 
 The **ros2-vicon-receiver** package creates a topic for each segment in each subject with the pattern `namespace/subject_name/segment_name`. Information is published on the topics as soon as new data is available from the vicon client (typically at the vicon client frequency). The message type [Position](vicon_receiver/msg/Position.msg) is used.
 
@@ -80,5 +80,5 @@ This result is part of a project that has received funding from the European Res
 
 <p style="text-align:center">
   <img src="logo_ERC.png" width="200" />
-  <img src="logo_OPT4Smart.png" width="200" /> 
+  <img src="logo_OPT4Smart.png" width="200" />
 </p>
