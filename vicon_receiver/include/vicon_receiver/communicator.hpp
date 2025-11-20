@@ -1,7 +1,7 @@
 #if !defined(COMMUNICATOR_HPP)
 #define COMMUNICATOR_HPP
 
-#include "DataStreamClient.h"
+#include "vicon-datastream-sdk/DataStreamClient.h"
 #include "rclcpp/rclcpp.hpp"
 #include "publisher.hpp"
 #include <iostream>
@@ -9,7 +9,18 @@
 #include <chrono>
 #include <string>
 #include <unistd.h>
-#include <boost/thread.hpp>
+#include "boost/thread.hpp"
+#include <set>
+
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include "geometry_msgs/msg/transform_stamped.hpp"
+
+#include "tf2/LinearMath/Quaternion.h"
+// #include "tf2/LinearMath/Transform.h"
+
+#include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
+#include "tf2_ros/transform_broadcaster.h"
+#include "tf2_ros/static_transform_broadcaster.h"
 
 using namespace std;
 
@@ -18,11 +29,25 @@ class Communicator : public rclcpp::Node
 {
 private:
     ViconDataStreamSDK::CPP::Client vicon_client;
+
     string hostname;
     unsigned int buffer_size;
     string ns_name;
     map<string, Publisher> pub_map;
     boost::mutex mutex;
+    std::set<std::string> pending_publishers;
+    
+    geometry_msgs::msg::TransformStamped static_tf;
+    string world_frame;
+    string vicon_frame;
+    vector<double> map_xyz;
+    vector<double> map_rpy;
+    bool map_rpy_in_degrees;
+
+    std::shared_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+
+    void publish_static_transform();
 
 public:
     Communicator();

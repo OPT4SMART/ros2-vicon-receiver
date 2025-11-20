@@ -1,0 +1,32 @@
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        USERNAME: ubuntu
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+        WS_NAME: ros2_ws
+    image: vsc_vicon_dev:1.0.0
+    container_name: devcontainer_vicon
+
+    # Interactive shell
+    stdin_open: true 
+    tty: true        
+    user: ubuntu
+
+    # Privileged, GPU access and host networking
+    network_mode: host
+    hostname: localhost
+    privileged: true
+
+    # Environment variables
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+
+    # Volumes 
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev:/dev
