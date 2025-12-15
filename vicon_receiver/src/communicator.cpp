@@ -26,13 +26,12 @@ Communicator::Communicator() : Node("vicon_client")
     this->get_parameter("map_rpy", map_rpy);
     this->get_parameter("map_rpy_in_degrees", map_rpy_in_degrees);
 
-    // Publish static transform from map ti vicon origin
+    // Publish static transform from map to vicon origin
     if (map_rpy_in_degrees) {
         for (unsigned int i=0; i<map_rpy.size(); i++) {
             map_rpy[i] = map_rpy[i] * M_PI / 180.0;
         }
     }
-
     tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
     this->publish_static_transform();
 
@@ -52,9 +51,9 @@ void Communicator::publish_static_transform()
     static_tf.transform.translation.z = map_xyz[2];
     tf2::Quaternion q;
     q.setRPY(
-      map_rpy[0],
-      map_rpy[1],
-      map_rpy[2]
+        map_rpy[0],
+        map_rpy[1],
+        map_rpy[2]
     );
     static_tf.transform.rotation.x = q.x();
     static_tf.transform.rotation.y = q.y();
@@ -78,7 +77,7 @@ bool Communicator::connect()
     int counter = 0;
     // Retry connection until successful
     while (!vicon_client.IsConnected().Connected && rclcpp::ok())
-    {   
+    {
         bool ok = (vicon_client.Connect(hostname).Result == Result::Success);
         if (!ok)
         {
@@ -179,7 +178,6 @@ void Communicator::get_frame()
             Output_GetSegmentGlobalRotationQuaternion quat =
                 vicon_client.GetSegmentGlobalRotationQuaternion(subject_name, segment_name);
 
-
             // Build a TF message for this segment
             geometry_msgs::msg::TransformStamped tf_msg;
 
@@ -226,6 +224,9 @@ void Communicator::get_frame()
 
                         // Orientation: copy the quaternion (x, y, z, w) directly from the transform.
                         vicon_pose_msg.pose.orientation = tf_msg.transform.rotation;
+                        
+                        // Update timestamp of static transform
+                        static_tf.header.stamp = tf_msg.header.stamp;
 
                         // Transform the pose to the global frame
                         geometry_msgs::msg::PoseStamped global_pose_msg;
