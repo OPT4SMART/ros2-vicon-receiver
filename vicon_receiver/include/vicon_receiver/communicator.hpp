@@ -65,7 +65,7 @@ public:
     void get_frame();
 
     // functions to create a segment publisher in a new thread
-    void create_publisher(const string subject_name, const string segment_name);
+    void create_segment_publisher(const string subject_name, const string segment_name);
     void create_publisher_thread(const string subject_name, const string segment_name);
 };
 

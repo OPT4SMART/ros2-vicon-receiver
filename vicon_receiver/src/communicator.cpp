@@ -247,7 +247,7 @@ void Communicator::get_frame()
                     {
                         pending_publishers.insert(key);
                         lock.unlock();
-                        create_publisher(subject_name, segment_name);
+                        create_segment_publisher(subject_name, segment_name);
                     }
                     else
                     {
@@ -292,7 +292,7 @@ void Communicator::get_frame()
 }
 
 // Create a publisher for a specific subject and segment
-void Communicator::create_publisher(const string subject_name, const string segment_name)
+void Communicator::create_segment_publisher(const string subject_name, const string segment_name)
 {
     // Launch a thread to create the publisher
     boost::thread(&Communicator::create_publisher_thread, this, subject_name, segment_name);
