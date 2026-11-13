@@ -14,6 +14,7 @@
 
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include "geometry_msgs/msg/transform_stamped.hpp"
+#include "geometry_msgs/msg/pose_array.hpp"
 
 #include "tf2/LinearMath/Quaternion.h"
 // #include "tf2/LinearMath/Transform.h"
@@ -46,6 +47,7 @@ private:
 
     std::shared_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
     std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+    rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr unlabeled_markers_pub_;
 
     void publish_static_transform();
 
@@ -63,7 +65,7 @@ public:
     void get_frame();
 
     // functions to create a segment publisher in a new thread
-    void create_publisher(const string subject_name, const string segment_name);
+    void create_segment_publisher(const string subject_name, const string segment_name);
     void create_publisher_thread(const string subject_name, const string segment_name);
 };
 
