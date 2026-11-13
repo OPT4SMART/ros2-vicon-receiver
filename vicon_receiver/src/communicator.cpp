@@ -37,6 +37,9 @@ Communicator::Communicator() : Node("vicon_client")
 
     // Initialize the tf2 broadcaster
     tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
+
+    unlabeled_markers_pub_ = this->create_publisher<geometry_msgs::msg::PoseArray>(
+        ns_name + "/unlabeled_markers", 10);
 }
 
 // Publish the static transform from map to vicon origin
@@ -259,6 +262,33 @@ void Communicator::get_frame()
 
         }
     }
+
+    // Publish unlabeled marker (x, y, z) in the same global frame as labeled segments
+    rclcpp::Time now = this->get_clock()->now();
+    static_tf.header.stamp = now;
+
+    geometry_msgs::msg::PoseArray unlabeled_msg;
+    unlabeled_msg.header.stamp = now;
+    unlabeled_msg.header.frame_id = world_frame;
+
+    unsigned int unlabeled_count = vicon_client.GetUnlabeledMarkerCount().MarkerCount;
+    for (unsigned int i = 0; i < unlabeled_count; ++i)
+    {
+        auto trans = vicon_client.GetUnlabeledMarkerGlobalTranslation(i);
+        if (trans.Result == Result::Success)
+        {
+            geometry_msgs::msg::PoseStamped vicon_pose, global_pose;
+            vicon_pose.header.stamp = now;
+            vicon_pose.header.frame_id = vicon_frame;
+            vicon_pose.pose.position.x = trans.Translation[0] / 1000.0;
+            vicon_pose.pose.position.y = trans.Translation[1] / 1000.0;
+            vicon_pose.pose.position.z = trans.Translation[2] / 1000.0;
+
+            tf2::doTransform(vicon_pose, global_pose, static_tf);
+            unlabeled_msg.poses.push_back(global_pose.pose);
+        }
+    }
+    unlabeled_markers_pub_->publish(unlabeled_msg);
 }
 
 // Create a publisher for a specific subject and segment
